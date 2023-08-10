@@ -14,13 +14,13 @@ import (
 )
 
 type Profile struct {
-	Context              string                 `json:"@context"`
-	Type                 string                 `json:"@type"`
-	Description          string                 `json:"description"`
-	Author               User                   `json:"author"`
-	MainEntityOfPage     Entity                 `json:"mainEntityOfPage"`
-	Identifier           Identifier             `json:"identifier"`
-	InteractionStatistic []InteractionStatistic `json:"interationStatistic"`
+	Context              string                    `json:"@context"`
+	Type                 string                    `json:"@type"`
+	Description          string                    `json:"description"`
+	Author               User                      `json:"author"`
+	MainEntityOfPage     Entity                    `json:"mainEntityOfPage"`
+	Identifier           Identifier                `json:"identifier"`
+	InteractionStatistic []InteractionStatisticStr `json:"interactionStatistic"`
 }
 
 type User struct {
@@ -51,19 +51,25 @@ type InteractionStatistic struct {
 	UserInteractionCount int    `json:"userInteractionCount"`
 }
 
+type InteractionStatisticStr struct {
+	Type                 string `json:"@type"`
+	InteractionType      string `json:"interactionType"`
+	UserInteractionCount string `json:"userInteractionCount"`
+}
+
 type Post struct {
 	ArticleBody          string                 `json:"articleBody"`
 	Author               User                   `json:"author"`
 	Comment              Comment                `json:"comment"`
 	CommentCount         string                 `json:"commentCount"`
-	ContentLocation      Location               `json:"contentLocation"`
+	ContentLocation      *Location              `json:"contentLocation"`
 	Context              string                 `json:"@context"`
 	DateCreated          time.Time              `json:"dateCreated"`
 	DateModified         time.Time              `json:"dateModified"`
 	Headline             string                 `json:"headline"`
 	Identifier           Identifier             `json:"identifier"`
 	Image                []Image                `json:"image"`
-	InteractionStatistic []InteractionStatistic `json:"interationStatistic"`
+	InteractionStatistic []InteractionStatistic `json:"interactionStatistic"`
 	MainEntityOfPage     Entity                 `json:"mainEntityOfPage"`
 	Type                 string                 `json:"@type"`
 	URL                  string                 `json:"url"`
@@ -75,7 +81,7 @@ type Comment struct {
 	Text                 string                `json:"text"`
 	Author               User                  `json:"author"`
 	DateCreated          time.Time             `json:"dateCreated"`
-	InteractionStatistic *InteractionStatistic `json:"interationStatistic"`
+	InteractionStatistic *InteractionStatistic `json:"interactionStatistic"`
 }
 
 type Location struct {
